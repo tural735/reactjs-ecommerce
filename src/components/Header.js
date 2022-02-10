@@ -4,19 +4,19 @@ import logo from '../assets/images/Logo-2.png';
 
 const mainNav=[
   {
-    display: "Trang chu",
+    display: "Home",
     path: "/"
   },
   {
-    display: "San pham",
+    display: "Catalog",
     path: "/catalog"
   },
   {
-    display: "Phu kien",
+    display: "Accessories",
     path: "/accessories"
   },
   {
-    display: "Lien khe",  
+    display: "Contact",  
     path: "/contact"
   }
 ]
