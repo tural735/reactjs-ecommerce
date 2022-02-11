@@ -4,16 +4,20 @@ import productData from '../assets/fake-data/products';
 import Grid from '../components/Grid';
 import Section, { SectionBody, SectionTitle } from '../components/Section';
 import ProductCard from '../components/ProductCard';
+import ProductView from '../components/ProductView';
 const Product = props => {
-  const product=productData.getProductBySlug(props.math.params.slug);
-  const relatedProducts=productData.getProducts(8);
+  const product = productData.getProductBySlug(props.match.params.slug)
+
+    const relatedProducts = productData.getProducts(8)
+
+    React.useEffect(() => {
+        window.scrollTo(0,0)
+    }, [product]);
   return (
   <Helmet title={product.title}>
     <Section>
       <SectionBody>
-        {
-          product.title
-        }
+        <ProductView product={product}/>
       </SectionBody>
       <SectionTitle>
         Kham pha them
