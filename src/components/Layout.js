@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Routes from '../routes/Routes';
 import Header from './Header';
 import Footer from './Footer';
+import ProductViewModal from './ProductViewModal';
 
 
 const Layout = () => {
@@ -15,6 +16,7 @@ const Layout = () => {
           <Routes/>
         </div>
         <Footer/>
+        <ProductViewModal/>
       </div>
     </>
   )}/>
