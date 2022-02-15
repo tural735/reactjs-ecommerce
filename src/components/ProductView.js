@@ -1,11 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../redux/shopping-cart/cartItemSlice';
 import PropTypes from 'prop-types'
 import Button from './Button';
 import numberWithCommas from '../utils/numberWithCommas';
 import { withRouter } from 'react-router-dom';
 
 const ProductView = props => {
-  const product=props.product;
+  const dispatch=useDispatch();
+  let product=props.product;
+  if(product=== undefined) product={
+    price: 0,
+    title:"",
+    colors:[],
+    size:[]
+  }
   const [previewImg,setPreviewImg]=useState(product.image01);
   const [color,setColor]=useState(undefined);
   const [size,setSize]=useState(undefined);
@@ -41,15 +50,29 @@ const ProductView = props => {
   }
   const addToCart=()=>{
     if(check()){
-      console.log({color,size})
+      dispatch(addItem({
+        slug: product.slug,
+        color: color,
+        size: size,
+        quantity:quantity,
+        price: product.price
+      }));
+      alert("success");
     }
   }
 
-  const goToCart=()=>{
-    if(check()){
+  const goToCart = () => {
+    if (check()){
+      dispatch(addItem({
+        slug:product.slug,
+        color:color,
+        size: size,
+        quantity:quantity,
+        price: product.price,
+      }))
       props.history.push('/cart');
     }
-  }
+}
   return (
     <div className="product">
       <div className="product__images">
@@ -136,7 +159,7 @@ const ProductView = props => {
 }
 
 ProductView.propTypes = {
-  product: PropTypes.object.isRequired,
+  product: PropTypes.object,
 }
 
 export default withRouter(ProductView);
